@@ -1,10 +1,14 @@
 set(header_path "${${PROJECT_NAME}_SOURCE_DIR}/include")
-set(header ${header_path}/circle.h)
-set(src circle.cpp)
+set(header_circle ${header_path}/circle.h)
+set(header_tasks ${header_path}/tasks.h)
+set(src_circle circle.cpp)
+set(src_tasks tasks.cpp)
 
 add_library(${PROJECT_NAME} SHARED
-  ${header}
-  ${src})
+  ${header_circle}
+  ${header_tasks}
+  ${src_circle}
+  ${src_tasks})
   
 target_include_directories(${PROJECT_NAME}
   PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
@@ -27,4 +31,4 @@ install(TARGETS ${PROJECT_NAME}
 install(TARGETS ${PROJECT_NAME}.info
         RUNTIME DESTINATION "${tool_dest}"
     COMPONENT library)
-install(FILES ${header} DESTINATION "${include_dest}")
+install(FILES ${header_circle} ${header_tasks} DESTINATION "${include_dest}")
